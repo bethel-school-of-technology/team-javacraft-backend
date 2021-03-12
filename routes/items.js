@@ -1,19 +1,71 @@
 var express = require('express');
 var router = express.Router();
-var item = require('../models/item');
+const Item = require('../models/Item');
 
-router.get('/', (req, res) => {
+//GET ALL ITEMS
+router.get('/', async (req, res) => {
+    try {
+        const items = await Item.find();
+        res.json(items);
+    } catch (err) {
+        res.json({ message: err });
+    }
+});
+
+router.get('/breakfast', (req, res) => {
     res.send(req.body)
 });
 
+router.get('/lunch', (req, res) => {
+    res.send(req.body)
+});
+
+router.get('/dinner', (req, res) => {
+    res.send(req.body)
+});
+
+router.get('/dessert', (req, res) => {
+    res.send(req.body)
+});
+
+//GET SPECIFIC ITEMS
+router.get('/:itemId', async (req, res) => {
+    try{
+        const item = await Item.findById(req.params.itemId);
+        res.json(item);
+    } catch (err) {
+        res.json({ message : err })
+    }
+});
+
+
+//POST REQUESTS
+router.post('/test', (req, res) => {
+    console.log(req.body)
+}); 
+
 router.post('/', async (req, res) => {
-    var post = new item({
+    const newItem = new Item({
         name: req.body.name,
         description: req.body.description,
         price: req.body.price
     });
     try{
-        var savedItem = await post.save();
+        const savedItem = await newItem.save();
+        res.json(savedItem);
+    } catch (err) {
+        res.json({ message: err })
+    }
+});
+
+router.post('/breakfast', async (req, res) => {
+    const newItem = new Item({
+        name: req.body.name,
+        description: req.body.description,
+        price: req.body.price
+    });
+    try{
+        const savedItem = await newItem.save();
         res.json(savedItem);
     } catch (err) {
         res.json({ message: err })
