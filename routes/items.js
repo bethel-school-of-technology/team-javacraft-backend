@@ -1,10 +1,15 @@
 var express = require('express');
 var router = express.Router();
-var Item = require('../models/Item');
+const Item = require('../models/Item');
 
-//GET REQUESTS
-router.get('/', (req, res) => {
-    console.log(req.body)
+//GET ALL ITEMS
+router.get('/', async (req, res) => {
+    try {
+        const items = await Item.find();
+        res.json(items);
+    } catch (err) {
+        res.json({ message: err });
+    }
 });
 
 router.get('/breakfast', (req, res) => {
@@ -23,6 +28,16 @@ router.get('/dessert', (req, res) => {
     res.send(req.body)
 });
 
+//GET SPECIFIC ITEMS
+router.get('/:itemId', async (req, res) => {
+    try{
+        const item = await Item.findById(req.params.itemId);
+        res.json(item);
+    } catch (err) {
+        res.json({ message : err })
+    }
+});
+
 
 //POST REQUESTS
 router.post('/test', (req, res) => {
@@ -30,13 +45,13 @@ router.post('/test', (req, res) => {
 }); 
 
 router.post('/', async (req, res) => {
-    var post = new Item({
+    const newItem = new Item({
         name: req.body.name,
         description: req.body.description,
         price: req.body.price
     });
     try{
-        var savedItem = await post.save();
+        const savedItem = await newItem.save();
         res.json(savedItem);
     } catch (err) {
         res.json({ message: err })
@@ -44,13 +59,13 @@ router.post('/', async (req, res) => {
 });
 
 router.post('/breakfast', async (req, res) => {
-    var post = new Item({
+    const newItem = new Item({
         name: req.body.name,
         description: req.body.description,
         price: req.body.price
     });
     try{
-        var savedItem = await post.save();
+        const savedItem = await newItem.save();
         res.json(savedItem);
     } catch (err) {
         res.json({ message: err })
