@@ -1,19 +1,13 @@
 const mongoose = require('mongoose');
+const { schema } = require('./user');
 
 const ItemSchema = mongoose.Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    description: {
-        type: String,
-        required: false
-    },
-    price: {
-        type:String,
-        required: true
-    }
+    name: String,
+    description: String,
+    price: String
 })
 
 
-module.exports = mongoose.model('Items', ItemSchema)
+var Item = mongoose.model('item', ItemSchema);
+
+module.exports = Item
