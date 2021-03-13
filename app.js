@@ -9,7 +9,7 @@ const app = express();
 const connectionString = "mongodb+srv://dbuser:Password12@bb-menu-items.kuzfo.mongodb.net/menuItems?retryWrites=true&w=majority";
 mongoose.connect(connectionString, {useNewUrlParser: true, useUnifiedTopology: true}, function(){
     console.log("database is connected")
-})
+});
 
 //IMPORT ROUTES
 var indexRouter = require('./routes/index');
