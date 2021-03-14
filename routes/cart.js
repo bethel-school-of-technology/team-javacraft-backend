@@ -5,8 +5,8 @@ const Cart = require('../models/Cart');
 //GET ALL ITEMS
 router.get('/', async (req, res) => {
     try {
-        const cart = await cart.find();
-        res.json(cart);
+        const carts = await Cart.find();
+        res.json(carts);
     } catch (err) {
         res.json({ message: err });
     }
