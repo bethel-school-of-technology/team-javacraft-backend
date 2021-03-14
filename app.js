@@ -16,6 +16,7 @@ mongoose.connect(connectionString, {useNewUrlParser: true, useUnifiedTopology: t
 var indexRouter = require('./routes/index');
 var itemsRoute = require('./routes/items');
 var usersRouter = require('./routes/users');
+var cartRouter = require('./routes/cart');
 
 
 
@@ -36,6 +37,7 @@ app.use(function(req, res, next) {
 app.use('/items', itemsRoute);
 app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
+app.use('/cart', cartRouter);
 
 app.listen(3000);
 
