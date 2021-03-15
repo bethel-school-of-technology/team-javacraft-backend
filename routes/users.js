@@ -104,19 +104,6 @@ router.post('/profile', async (req, res, next) => {
   }
 })
 
-//route for menu -> /menu
-router.post('/menu', async (req, res, next) => {
 
-})
-
-//route for cart -> /cart
-router.post('/cart', async (req, res, next) => {
-
-})
-
-//route for checkout -> /checkout
-router.post('/checkout', async (req, res, next) => {
-
-})
 
 module.exports = router;
