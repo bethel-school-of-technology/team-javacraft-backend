@@ -12,6 +12,10 @@ const ItemSchema = new mongoose.Schema({
     price: {
         type: String,
         required: true
+    },
+    category: {
+        type: String,
+        required: false
     }
 });
 
