@@ -33,7 +33,6 @@ app.use(function(req, res, next) {
     next();
   });
 
-
 app.use('/items', itemsRoute);
 app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
